@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101713">
+  <title>بلياردو — طاولة الأصدقاء</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="الرئيسية"><span class="brand-mark">8</span><span>بلياردو<span class="brand-light"> الأصدقاء</span></span></a>
+      <button class="icon-button" id="soundBtn" aria-label="الصوت" title="الصوت"><span id="soundIcon">♪</span></button>
+    </header>
+
+    <section class="intro-row">
+      <div><p class="eyebrow">طاولة خاصة · لعبة 8 كرات</p><h1>الطاولة لك.</h1><p class="subtitle">وجّه العصا، اضبط القوة، وأسقط الكرة 8 في الوقت المناسب.</p></div>
+      <div class="turn-chip"><span class="turn-dot"></span><span id="turnLabel">دور اللاعب 1</span></div>
+    </section>
+
+    <section class="scoreboard" aria-label="النتيجة">
+      <div class="player-card active" id="playerOneCard"><span class="player-avatar avatar-one">١</span><div class="player-info"><span class="player-caption">اللاعب الأول</span><strong id="playerOneName">أنت</strong></div><span class="group-tag" id="groupOne">—</span></div>
+      <div class="score-center"><span class="score-label">الجولات</span><strong><span id="scoreOne">0</span><i>:</i><span id="scoreTwo">0</span></strong></div>
+      <div class="player-card right-card" id="playerTwoCard"><span class="player-avatar avatar-two">٢</span><div class="player-info"><span class="player-caption" id="opponentCaption">اللاعب الثاني</span><strong id="playerTwoName">صديقك</strong></div><span class="group-tag" id="groupTwo">—</span></div>
+    </section>
+
+    <section class="table-card">
+      <div class="table-topline"><div class="game-status"><span class="live-dot"></span><span id="statusText">الكرة البيضاء في يدك</span></div><span class="game-mode" id="modeLabel">لعب محلي</span></div>
+      <div class="table-wrap"><canvas id="poolCanvas" aria-label="طاولة بلياردو تفاعلية" role="img"></canvas><div class="toast" id="toast" role="status"></div><div class="result-overlay hidden" id="resultOverlay"><div class="result-panel"><span class="result-emoji">🏆</span><h2 id="resultTitle">فزت!</h2><p id="resultMessage"></p><button class="primary-button" id="rematchBtn">جولة جديدة</button></div></div></div>
+      <div class="table-footer"><span><kbd>اسحب/المس</kbd> لتحديد الاتجاه</span><span class="footer-dot">·</span><span>ثم اضغط «اضرب»</span><span class="table-hint">الهدف: أسقط مجموعتك ثم الكرة 8</span></div>
+    </section>
+
+    <section class="controls-card">
+      <div class="aim-control"><div class="control-heading"><span>قوة الضربة</span><strong id="powerValue">٥٥٪</strong></div><input id="powerSlider" type="range" min="10" max="100" value="55" aria-label="قوة الضربة"><div class="range-labels"><span>هادئة</span><span>قوية</span></div></div>
+      <button class="shoot-button" id="shootBtn"><span class="shoot-icon">➤</span><span>اضرب</span></button>
+      <button class="reset-button" id="rackBtn" title="إعادة ترتيب الكرات" aria-label="إعادة ترتيب الكرات">↻</button>
+    </section>
+
+    <section class="bottom-tools">
+      <label class="assist-toggle" id="assistWrap"><input type="checkbox" id="assistToggle"><span class="toggle-ui"></span><span class="assist-copy"><strong>خط التصويب الطويل</strong><small>مساعدة تدريبية على هذا الجهاز فقط</small></span><span class="assist-badge">تدريب</span></label>
+      <button class="friend-button" id="friendBtn"><span>＋</span> العب مع صديق على هاتف آخر</button>
+    </section>
+    <p class="fair-play-note" id="fairPlayNote">المساعدة الطويلة متاحة في اللعب المحلي فقط. عند الاتصال بصديق، يحصل كلا اللاعبين على خط تصويب قياسي لضمان اللعب العادل.</p>
+
+    <footer><span>تدريب جيد، وضربات أجمل.</span><button class="text-button" id="rulesBtn">قواعد سريعة</button></footer>
+  </main>
+
+  <dialog id="friendDialog" class="modal"><form method="dialog"><button class="close-modal" aria-label="إغلاق">×</button></form><div class="modal-icon">♧</div><p class="eyebrow">العبوا معاً</p><h2>صِل هاتف صديقك</h2><p class="modal-desc">اتصال مباشر بين المتصفحين. أنشئ رمزاً على هاتفك وشاركه مع صديقك، ثم بدّلوا رموز الرد.</p><div class="connection-actions"><button class="primary-button" id="createRoomBtn">إنشاء دعوة</button><button class="secondary-button" id="joinRoomBtn">لديّ رمز دعوة</button></div><div class="connection-step hidden" id="connectionStep"><label id="codeLabel" for="connectionCode">رمز الاتصال</label><textarea id="connectionCode" rows="4" spellcheck="false" placeholder="الصق الرمز هنا"></textarea><div class="code-actions"><button class="secondary-button" id="copyCodeBtn">نسخ الرمز</button><button class="primary-button" id="continueCodeBtn">متابعة</button></div><p class="step-hint" id="stepHint"></p></div><div class="connection-state" id="connectionState"></div><p class="privacy-note">لا يوجد تسجيل دخول. الاتصال يعتمد على WebRTC وقد يتعذر على بعض الشبكات. لا تشارك الرمز إلا مع صديقك.</p></dialog>
+
+    <dialog id="rulesDialog" class="modal rules-modal"><form method="dialog"><button class="close-modal" aria-label="إغلاق">×</button></form><div class="modal-icon">◎</div><p class="eyebrow">كيف تلعب</p><h2>قواعد 8 كرات</h2><ul class="rules-list"><li>أسقط الكرات المخططة أو المصمتة التي يحددها أول تصويب ناجح.</li><li>بعد تنظيف مجموعتك، أسقط الكرة السوداء 8 لتفوز.</li><li>إدخال البيضاء أو الكرة 8 مبكراً يمنح الفوز للخصم.</li><li>المس الطاولة لتوجيه العصا، واضبط القوة ثم اضغط «اضرب».</li><li>في اللعب عبر الهاتفين، يلعب كل شخص من جهازه وبنفس قواعد التصويب.</li></ul><button class="primary-button full-button" id="closeRulesBtn">حسناً، لنلعب</button></dialog>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
