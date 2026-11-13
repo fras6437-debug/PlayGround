@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071116">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071116'/%3E%3Ccircle cx='32' cy='32' r='19' fill='%238af5bd'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23071116'/%3E%3C/svg%3E">
+  <title>HACKER BILLIARDS // Cyber Break</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Hacker Billiards home"><span class="brand-mark">⌁</span><span>HACKER<span class="brand-light">/</span>BILLIARDS</span></a>
+      <div class="top-meta"><span class="live-dot"></span><span>ARCADE MODE</span><span class="meta-divider"></span><span>SECTOR 08</span></div>
+      <button class="icon-button" id="soundBtn" aria-label="Toggle sound" title="Toggle sound">♫ <span id="soundState">ON</span></button>
+    </header>
+
+    <section class="intro">
+      <div class="title-wrap"><div class="eyebrow"><span class="eyebrow-line"></span>BREAK THE SYSTEM</div><h1>CYBER <span>BREAK</span></h1><p>Line it up. Clear the corrupted nodes. Don't scratch the cue.</p></div>
+      <div class="level-chip"><span class="level-icon">◈</span><div><small>MISSION</small><strong>THE FIREWALL</strong></div><b>01</b></div>
+    </section>
+
+    <section class="game-layout" aria-label="Billiards game">
+      <div class="play-column">
+        <div class="table-shell">
+          <div class="table-topline"><span><i class="status-pip"></i> TABLE CONNECTION: SECURE</span><span id="shotLabel">SHOT 01</span></div>
+          <div class="canvas-wrap"><canvas id="gameCanvas" aria-label="Pool table. Drag to aim, then shoot." tabindex="0"></canvas><div class="overlay" id="overlay"><div class="overlay-card"><span class="overlay-icon">◉</span><h2 id="overlayTitle">SYSTEM READY</h2><p id="overlayText">Drag on the table to aim, then fire.</p><button id="overlayBtn">START BREAK <span>↗</span></button></div></div></div>
+          <div class="table-bottomline"><span><span class="keycap">DRAG</span> AIM</span><span><span class="keycap">SPACE</span> SHOOT</span><span class="table-coords">X: <b id="coordX">---</b> &nbsp; Y: <b id="coordY">---</b></span></div>
+        </div>
+        <div class="control-row">
+          <div class="aim-control"><div class="control-label"><span>AIM VECTOR</span><strong id="angleReadout">000°</strong></div><div class="aim-track"><span class="aim-origin">◉</span><input id="aimSlider" type="range" min="-180" max="180" value="0" aria-label="Aim angle"><span class="aim-target">⌖</span></div></div>
+          <div class="power-control"><div class="control-label"><span>SHOT POWER</span><strong><span id="powerReadout">52</span><small>%</small></strong></div><input id="powerSlider" type="range" min="12" max="100" value="52" aria-label="Shot power"></div>
+          <button class="shoot-button" id="shootBtn"><span class="shoot-glyph">➤</span><span>FIRE SHOT</span><kbd>SPACE</kbd></button>
+        </div>
+        <div class="mobile-hint">Drag anywhere on the table to set your aim · Tap FIRE to shoot</div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="panel mission-panel"><div class="panel-heading"><span>MISSION STATUS</span><span class="signal">● ONLINE</span></div><div class="score-block"><span class="score-caption">NODES CLEARED</span><div class="score-number"><strong id="score">00</strong><span>/ 07</span></div><div class="progress-track"><i id="progress"></i></div></div><div class="objective"><span class="objective-icon">⌗</span><div><strong>Clear all 7 nodes</strong><small>One clean shot at a time.</small></div></div><div class="objective danger"><span class="objective-icon">◉</span><div><strong>Avoid the firewall</strong><small>Black 8-ball ends the run.</small></div></div></div>
+        <div class="panel stats-panel"><div class="panel-heading"><span>SESSION DATA</span><span class="small-lock">▣ ENCRYPTED</span></div><div class="stat-row"><span>SHOTS TAKEN</span><strong id="shots">00</strong></div><div class="stat-row"><span>BEST STREAK</span><strong id="streak">00 <small>nodes</small></strong></div><div class="stat-row"><span>PRECISION</span><strong id="precision">—<small>%</small></strong></div></div>
+        <div class="tip-card"><span class="tip-icon">✳</span><div><strong>QUICK TIP</strong><p>Soft shots give you more control. The rails are your friend.</p></div></div>
+        <button class="reset-button" id="resetBtn"><span>↻</span> RESTART MISSION</button>
+      </aside>
+    </section>
+    <footer><span>© 2084 // NEON ARCADE NETWORK</span><span>BUILT FOR THE AFTER HOURS <b>✳</b></span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
